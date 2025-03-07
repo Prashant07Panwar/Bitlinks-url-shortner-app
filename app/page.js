@@ -1,8 +1,9 @@
+"use client"
 import Image from "next/image";
 import localFont from "next/font/local";
 import Link from "next/link";
-
-
+import Typed from "typed.js";
+import { useEffect,useRef } from "react";
 
 const poppins = localFont({
   src: "./fonts/Poppins-ExtraBold.ttf",
@@ -11,19 +12,35 @@ const poppins = localFont({
 });
 
 export default function Home() {
+  const el = useRef(null);
+  useEffect(() => {
+    const typed = new Typed(el.current, {
+      strings: ['Privacy-Focused', 'Fast', 'Easy to use'],
+      typeSpeed: 50,
+      backSpeed: 25,
+      loop: true,
+      startDelay: 500,
+      backDelay: 1500,
+      showCursor: false,
+    });
+    return () => {
+        typed.destroy();
+    };
+  }, []);
   return (
-    <main className="bg-gradient-to-r from-pink-200 to-pink-400 shadow-lg rounded-xl shadow-purple-950">
-      <section className="grid grid-cols-2 h-[50vh]">
-        <div className="flex flex-col gap-4 items-center justify-center">
+    <main className="bg-gray-200">
+      <section className="grid grid-cols-2 h-[90vh]">
+        <div className="flex flex-col items-start gap-8 justify-center pl-16">
           <p className={`text-3xl font-bold ${poppins.className}`}>
             The best URL shortener in the Market
           </p>
-          <p className="px-56 text-center text-lg">
-            We are the most straightfoward URL Shortener in the world. Most of the url shorteners will track you or ask you to give your details for login. We understand your needs and hence we have created this URL shortener
-          </p>
+          <p className="">
+            We are the most straightfoward URL Shortener in the world. We priortize your privacy by not tracking your activities or requiring login details.</p>
+          <div className="w-full h-[5vh]"><span ref={el} className="text-black font-bold text-lg"/></div>
           <div className='flex gap-3 justify-start'>
-          <Link href="/shorten"><button className='bg-purple-500 shadow-slate-900 rounded-lg shadow-md py-3 px-4 font-bold text-white hover:text-lg hover:shadow-lg hover:bg-purple-800 hover:shadow-slate-900'>Try Now</button></Link>
-          <Link href="/github"><button className='bg-purple-500 shadow-slate-900 rounded-lg shadow-md py-3 px-4 font-bold text-white hover:text-lg hover:shadow-lg hover:bg-purple-800 hover:shadow-slate-900'>GitHub</button></Link>
+          <Link href="/shorten"><button className='bg-blue-500 rounded-lg  p-4 py-2 font-bold text-white'>Try Now</button></Link>
+          <a href="https://github.com/Prashant07Panwar" 
+        target="_blank"><button className='text-black bg-white-500 rounded-lg  p-4 py-2 font-bold border-black border-2'>GitHub</button></a>
         </div>
         </div>
         <div className=" flex justify-start relative">
