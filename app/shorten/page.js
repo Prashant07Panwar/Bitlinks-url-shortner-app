@@ -38,7 +38,7 @@ const Shorten = () => {
 
 
     return (
-        <div className='mx-auto max-w-lg bg-purple-100 my-16 p-4 rounded-lg flex flex-col gap-8'>
+        <div className='mx-auto max-w-lg min-h-[50vh] bg-purple-100 my-16 p-4 rounded-lg flex flex-col gap-8'>
             <h1 className='font-extrabold text-4xl text-purple-700 text-center'>Generate your short URLs</h1>
             <div className='flex flex-col gap-2 items-center'>
                 <input type="text"
@@ -53,10 +53,9 @@ const Shorten = () => {
                     placeholder='Enter your preferred short URL text'
                     onChange={e => { setshorturl(e.target.value) }} />
                 <button onClick={generate} className='bg-purple-800 rounded-lg shadow-lg p-3 py-1 my-3 font-bold text-lg text-white w-[80%] hover:shadow-gray-800'>Generate</button>
+                {generated && <> <div className='flex gap-1 overflow-hidden'><span className='font-bold text-lg'>Your Link:</span><code><Link target="_blank" href={generated} className='text-purple-700 font-bold text-lg overflow-hidden text-ellipsis w-[60%]'>{generated}</Link> 
+                </code></div></>}
             </div>
-
-            {generated && <> <div className='flex gap-2 justify-center items-center'><span className='font-bold text-lg'>Your Link:</span><code><Link target="_blank" href={generated} className='text-purple-700 font-bold text-lg'>{generated}</Link> 
-            </code></div></>}
         </div>
     )
 }
